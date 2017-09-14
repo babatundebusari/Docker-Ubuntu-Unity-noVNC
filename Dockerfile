@@ -18,7 +18,7 @@ RUN apt-get update \
         nautilus \
         gedit \
         xterm \
-        sudo
+        sudo 
 
 # Install dependency components.
 RUN apt-get install -y \
@@ -29,6 +29,9 @@ RUN apt-get install -y \
         pwgen \
         libtasn1-3-bin \
         libglu1-mesa \
+        gnome-terminal \
+        htop \
+        nano \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -41,6 +44,9 @@ RUN git clone https://github.com/novnc/noVNC.git $HOME/noVNC
 
 # Clone websockify for noVNC
 Run git clone https://github.com/kanaka/websockify $HOME/noVNC/utils/websockify
+
+# install google chrome, chromedriver and selenium
+RUN wget -qO- https://gist.githubusercontent.com/ziadoz/3e8ab7e944d02fe872c3454d17af31a5/raw/990d54467543d17e5c1874dccc3b7970a63d1ca4/install.sh | bash
 
 # Download ngrok.
 ADD https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip $HOME/ngrok/ngrok.zip
